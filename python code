@@ -1,0 +1,209 @@
+import pandas as pd
+
+pip install openpyxl
+
+df = pd.read_csv("data.csv", encoding = "ISO-8859-1", low_memory=False)
+print(df.head())
+
+df.stn_code.unique()
+df.state.unique()
+
+df.state.unique().size
+
+mean_so2_andhra = df.loc[df['state']=='Andhra Pradesh', 'so2'].mean()
+print(mean_so2_andhra)
+
+mean_so2_arunachal = df.loc[df['state']=='Arunachal Pradesh', 'so2'].mean()
+print(mean_so2_arunachal)
+
+mean_so2_assam = df.loc[df['state']=='Assam', 'so2'].mean()
+print(mean_so2_assam)
+
+mean_so2_bihar = df.loc[df['state']=='Bihar', 'so2'].mean()
+print(mean_so2_bihar)
+
+mean_so2_chandigarh = df.loc[df['state']=='Chandigarh', 'so2'].mean()
+print(mean_so2_chandigarh)
+
+mean_so2_chattisgarh = df.loc[df['state']=='Chattisgarh', 'so2'].mean()
+print(mean_so2_chattisgarh)
+
+so2_chattisgarh = df.loc[df['state']=="Chattisgarh", 'so2']
+print(so2_chattisgarh) #this shows chattisgarh has no entry on any columns
+
+mean_so2_dadra = df.loc[df['state']=='Dadra & Nagar Haveli', 'so2'].mean()
+print(mean_so2_dadra)
+
+mean_so2_daman = df.loc[df['state']=='Daman & Diu', 'so2'].mean()
+print(mean_so2_daman)
+
+mean_so2_delhi = df.loc[df['state']=='Delhi', 'so2'].mean()
+print(mean_so2_delhi)
+
+mean_so2_goa = df.loc[df['state']=='Goa', 'so2'].mean()
+print(mean_so2_goa)
+
+mean_so2_gujarat = df.loc[df['state']=='Gujarat', 'so2'].mean()
+print(mean_so2_gujarat)
+
+mean_so2_haryana = df.loc[df['state']=='Haryana', 'so2'].mean()
+print(mean_so2_haryana)
+
+mean_so2_himachal = df.loc[df['state']=='Himachal Pradesh', 'so2'].mean()
+print(mean_so2_himachal)
+
+mean_so2_jk = df.loc[df['state']=='Jammu & Kashmir', 'so2'].mean()
+print(mean_so2_jk)
+
+mean_so2_jharkhand = df.loc[df['state']=='Jharkhand', 'so2'].mean()
+print(mean_so2_jharkhand)
+
+mean_so2_karnataka = df.loc[df['state']=='Karnataka', 'so2'].mean()
+print(mean_so2_karnataka)
+
+mean_so2_kerala = df.loc[df['state']=='Kerala', 'so2'].mean()
+print(mean_so2_kerala)
+
+mean_so2_madhya = df.loc[df['state']=='Madhya Pradesh', 'so2'].mean()
+print(mean_so2_madhya)
+
+mean_so2_maha = df.loc[df['state']=='Maharashtra', 'so2'].mean()
+print(mean_so2_maha)
+
+mean_so2_manipur = df.loc[df['state']=='Manipur', 'so2'].mean()
+print(mean_so2_manipur)
+
+mean_so2_megh = df.loc[df['state']=='Meghalaya', 'so2'].mean()
+print(mean_so2_megh)
+
+mean_so2_mizo = df.loc[df['state']=='Mizoram', 'so2'].mean()
+print(mean_so2_mizo)
+
+mean_so2_nagaland = df.loc[df['state']=='Nagaland', 'so2'].mean()
+print(mean_so2_nagaland)
+
+mean_so2_odisha = df.loc[df['state']=='Odisha', 'so2'].mean()
+print(mean_so2_odisha)
+
+mean_so2_puducherry = df.loc[df['state']=='Puducherry', 'so2'].mean()
+print(mean_so2_puducherry)
+
+mean_so2_punjab = df.loc[df['state']=='Punjab', 'so2'].mean()
+print(mean_so2_punjab)
+
+mean_so2_rajasthan = df.loc[df['state']=='Rajasthan', 'so2'].mean()
+print(mean_so2_rajasthan)
+
+mean_so2_sikkim = df.loc[df['state']=='Sikkim', 'so2'].mean()
+print(mean_so2_sikkim)
+
+mean_so2_tamil = df.loc[df['state']=='Tamil Nadu', 'so2'].mean()
+print(mean_so2_tamil)
+
+mean_so2_telengana = df.loc[df['state']=='Telengana', 'so2'].mean()
+print(mean_so2_telengana)
+
+mean_so2_uttar = df.loc[df['state']=='Uttar Pradesh', 'so2'].mean()
+print(mean_so2_uttar)
+
+mean_so2_uttarakhand = df.loc[df['state']=='Uttarakhand', 'so2'].mean()
+print(mean_so2_uttarakhand)
+
+mean_so2_uttaranchal = df.loc[df['state']=='Uttaranchal', 'so2'].mean()
+print(mean_so2_uttaranchal)
+
+mean_so2_wbengal = df.loc[df['state']=='West Bengal', 'so2'].mean()
+print(mean_so2_wbengal)
+
+mean_so2_andaman = df.loc[df['state']=='andaman-and-nicobar-islands', 'so2'].mean()
+print(mean_so2_andaman)
+
+mean_so2_lakshadweep = df.loc[df['state']=='Lakshadweep', 'so2'].mean()
+print(mean_so2_lakshadweep)
+
+mean_so2_tripura = df.loc[df['state']=='Tripura', 'so2'].mean()
+print(mean_so2_tripura)
+
+stateVsSo2 = pd.DataFrame({'State' : pd.Series(dtype = 'str'), 'Mean SO2' : pd.Series(dtype = 'float')})
+for i in df.state.unique():
+        so2 = df.loc[df['state']== i , 'so2'].mean()        
+        stateVsSo2.loc[len(stateVsSo2)] = [i, so2] 
+display(stateVsSo2)   #used loop to find out this info at one go
+
+writer = pd.ExcelWriter('stateVsSo2.xlsx') #create excel writer object. stateVsSo2 is the name of the excel sheet I'm giving
+stateVsSo2.to_excel(writer) #write dataframe to excel, the stateVsSo2 used here is the name of the table in python
+writer.save() #save the excel
+
+mean_no2_andhra = df.loc[df['state']=='Andhra Pradesh', 'no2'].mean()
+print(mean_no2_andhra)
+
+mean_no2_arunachal = df.loc[df['state']=='Arunachal Pradesh', 'no2'].mean()
+print(mean_no2_arunachal)
+
+mean_no2_assam = df.loc[df['state']=='Assam', 'no2'].mean()
+print(mean_no2_assam)
+
+mean_no2_bihar = df.loc[df['state']=='Bihar', 'no2'].mean()
+print(mean_no2_bihar)
+
+mean_no2_chandigarh = df.loc[df['state']=='Chandigarh', 'no2'].mean()
+print(mean_no2_chandigarh)
+
+mean_no2_chattisgarh = df.loc[df['state']=='Chattisgarh', 'no2'].mean()
+print(mean_no2_chattisgarh)
+
+mean_no2_dadra = df.loc[df['state']=='Dadra & Nagar Haveli', 'no2'].mean()
+print(mean_no2_dadra)
+
+mean_no2_daman = df.loc[df['state']=='Daman & Diu', 'no2'].mean()
+print(mean_no2_daman)
+
+stateVsNo2 = pd.DataFrame({'State' : pd.Series(dtype = 'str'), 'Mean NO2' : pd.Series(dtype = 'float')})
+for i in df.state.unique():
+        no2 = df.loc[df['state']== i , 'no2'].mean()        
+        stateVsNo2.loc[len(stateVsNo2)] = [i, no2] 
+display(stateVsNo2)
+
+
+writer2 = pd.ExcelWriter('stateVsNo2.xlsx') #create excel writer object. stateVsNo2 is the name of the excel sheet I'm giving
+stateVsNo2.to_excel(writer2) #write dataframe to excel, the stateVsNo2 used here is the name of the table in python
+writer2.save()
+
+import matplotlib.pyplot as plt
+import geopandas as gpd
+
+
+stateVsSpm = pd.DataFrame({'State' : pd.Series(dtype = 'str'), 'Mean SPM' : pd.Series(dtype = 'float')})
+for i in df.state.unique():
+        spm = df.loc[df['state']== i , 'spm'].mean()        
+        stateVsSpm.loc[len(stateVsSpm)] = [i, spm] 
+display(stateVsSpm)
+
+writer3 = pd.ExcelWriter('stateVsSpm.xlsx') #create excel writer object. stateVsSpm is the name of the excel sheet I'm giving
+stateVsSpm.to_excel(writer3) #write dataframe to excel, the stateVsSpm used here is the name of the table in python
+writer3.save()
+
+stateVsRspm = pd.DataFrame({'State' : pd.Series(dtype = 'str'), 'Mean RSPM' : pd.Series(dtype = 'float')})
+for i in df.state.unique():
+        rspm = df.loc[df['state']== i , 'rspm'].mean()        
+        stateVsRspm.loc[len(stateVsRspm)] = [i, rspm] 
+display(stateVsRspm)
+
+writer4 = pd.ExcelWriter('stateVsRspm.xlsx') #create excel writer object. stateVsRspm is the name of the excel sheet I'm giving
+stateVsRspm.to_excel(writer4) #write dataframe to excel, the stateVsRspm used here is the name of the table in python
+writer4.save()
+
+pip install openpyxl
+
+Master_table = stateVsSo2.merge(stateVsNo2,on='State').merge(stateVsSpm,on='State').merge(stateVsRspm, on='State')
+print(Master_table)
+
+writer5 = pd.ExcelWriter('Master_table.xlsx') #create excel writer object. Master_table is the name of the excel sheet I'm giving
+Master_table.to_excel(writer5) #write dataframe to excel, the Master_table used here is the name of the table in python
+writer5.save()
+
+Master_table.insert(0, "Country", "India")
+print(Master_table) #this mutates the original dataframe and inserts the column
+
+print(Master_table)
+
